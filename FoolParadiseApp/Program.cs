@@ -1,103 +1,71 @@
 ﻿using System;
-using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
 
 namespace FoolParadiseApp
 {
+    /// <summary>
+    /// Application's entry point
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            decimal amount;
+            string name;
+            decimal interest;
+            int month;
+            bool success;
 
-            var prog = new Program();
-            Console.WriteLine("Enter your name below");
-            var name = Console.ReadLine();
-            Console.WriteLine("Enter amount");
-            var amount = decimal.Parse(Console.ReadLine());
-            Console.WriteLine("Enter interest");
-            var interest = decimal.Parse(Console.ReadLine());
-            Console.WriteLine("Enter duration in months");
-            var months = Int32.Parse(Console.ReadLine());
+            // Receives customer's name
+            Console.Write("Kindly enter your name:    ");
+            name = Console.ReadLine();
+            while (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("Kindly input your name.");
+                Console.Write("Enter name:      ");
+                name = Console.ReadLine();
+            }
 
+            // Receives deposit amount
+            Console.Write("Enter deposit amount:      ");
+            success = decimal.TryParse(Console.ReadLine(), out amount);
+            while (success && amount < 1 || !success)
+            {
+                Console.WriteLine("Invalid input, try again.");
+                Console.Write("Enter deposit amount:      ");
+                success = decimal.TryParse(Console.ReadLine(), out amount);
+            }
+
+            // Receives desired interest
+            Console.Write("Enter desired interest:    ");
+            success = decimal.TryParse(Console.ReadLine(), out interest);
+            while (success && interest < 1 || !success)
+            {
+                Console.WriteLine("Invalid input, try again.");
+                Console.Write("Enter deposit amount:      ");
+                success = decimal.TryParse(Console.ReadLine(), out interest);
+            }
+
+            // Receives the investment month
+            Console.Write("Planned investment months: ");
+            success = int.TryParse(Console.ReadLine(), out month);
+            while (success && month < 1 || !success)
+            {
+                Console.WriteLine("Invalid input, try again.");
+                Console.Write("Enter deposit amount:      ");
+                success = int.TryParse(Console.ReadLine(), out month);
+            }
+
+
+            // Logs customer's investement details. 
+            Console.WriteLine();
             Console.WriteLine("Hello Customer");
-
-            Console.WriteLine(prog.Deposit(name, amount, interest, months));
-            Console.Read();
-
-            Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
-
-        }
-
-        public string Deposit(string name, decimal amount, decimal interest, int months)
-        {
-
-            return $"Welcome {name}, thank for choosing us";
-        }
-
-        public decimal Total(decimal amount, decimal interest, int months)
-        {
-            try
-            {
-                decimal total  =0 ;
-                //----- ur logic
-
-
-                return total;
-
-            }
-            catch (Exception ex)
-            {
-
-                return -1;
-            }
-
-        }
-
-        public decimal NetInterest(decimal interest, int months)
-        {
-            try
-            {
-                decimal netInterest = 0;
-                //----- ur logic
-
-
-                return netInterest;
-
-            }
-            catch (Exception ex)
-            {
-
-                return -1;
-            }
-
-        }
-
-        public decimal Accrued(decimal interest, int months)
-        {
-            try
-            {
-                decimal netInterest = 0;
-                //----- ur logic
-
-
-                return netInterest;
-
-            }
-            catch (Exception ex)
-            {
-
-                return -1;
-            }
+            Console.WriteLine();
+            Console.WriteLine($"        {Calculations.Deposit(name.ToUpper(), month)}");
+            Console.WriteLine();
+            Console.WriteLine($"        Total expected amount is ${Calculations.Total(amount, interest, month)}");
+            Console.WriteLine();
+            Console.WriteLine($"        Your total returns after {2 * month} months will be ${2 * Calculations.Total(amount, interest, month)}");
 
         }
     }
-
-    //public class BankingObject
-    //{
-    //    public int months { get; set; }
-    //    public string name { get; set; }
-    //    public decimal interest { get; set; }
-    //    public decimal amount { get; set; }
-    //}
 }
