@@ -26,71 +26,60 @@ namespace FoolParadiseApp
             Console.Read();
 
             Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
-
         }
 
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
-
-            return $"Welcome {name}, thank for choosing us";
+            DateTime due = DateTime.Now.AddMonths(months);
+            return $"Welcome {name}, your total should be ready in {due:MMMM}. Thanks";
         }
 
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = (amount * months) + ((amount * (interest / 100)) * months);
                 //----- ur logic
-
 
                 return total;
-
             }
             catch (Exception ex)
             {
-
                 return -1;
             }
-
         }
 
-        public decimal NetInterest(decimal interest, int months)
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal netInterest = 0;
+                decimal netInterest = (amount * interest / 100) * months;
                 //----- ur logic
 
-
                 return netInterest;
-
             }
             catch (Exception ex)
             {
-
                 return -1;
             }
-
         }
 
-        public decimal Accrued(decimal interest, int months)
-        {
-            try
-            {
-                decimal netInterest = 0;
-                //----- ur logic
+        //public decimal Accrued(decimal interest, int months)
+        //{
+        //    try
+        //    {
+        //        decimal netInterest = 0;
+        //        //----- ur logic
 
+        //        return netInterest;
 
-                return netInterest;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return -1;
+        //    }
 
-            }
-            catch (Exception ex)
-            {
-
-                return -1;
-            }
-
-        }
+        //}
     }
 
     //public class BankingObject
