@@ -11,15 +11,14 @@ namespace XUnitTestProject1
         {
             var foolApp = new Program();
             string depo = foolApp.Deposit("Segun", 2000, 100, 5);
-            Assert.Equal($"(Welcome Segun, your total should be ready in Decmber. Thanks)", depo);
+            Assert.Equal($"(Welcome Segun, your total should be ready in January. Thanks)", depo);
         }
 
         [Fact]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-
-            decimal intT = foolApp.NetInterest(50, 6);
+            decimal intT = foolApp.NetInterest(800, 50, 6);
             Assert.Equal(2400, intT);
         }
 

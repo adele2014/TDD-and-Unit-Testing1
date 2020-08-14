@@ -10,15 +10,14 @@ namespace FoolParadiseTest
         {
             var foolApp = new Program();
             string depo = foolApp.Deposit("Segun",2000,100,5);
-
-            Assert.AreEqual($"(Welcome Segun, your total should be ready in December. Thanks)", depo);
+            Assert.AreEqual($"(Welcome Segun, your total should be ready in January. Thanks)", depo);
         }
       
         [TestMethod]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-            decimal intT = foolApp.NetInterest(50, 6);
+            decimal intT = foolApp.NetInterest(800, 50, 6);
             Assert.AreEqual(2400, intT);
         }
 
