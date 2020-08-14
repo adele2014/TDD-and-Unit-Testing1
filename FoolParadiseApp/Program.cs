@@ -24,48 +24,70 @@ namespace FoolParadiseApp
 
             Console.WriteLine(prog.Deposit(name, amount, interest, months));
             Console.Read();
-
             Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
 
         }
+        public enum Months
+        {
+            January = 1,
+            Febuary,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December = 0
 
+        }
+        //Returns Welcome Customer and the amount expected in certain period of time
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
 
-            return $"Welcome {name}, thank for choosing us";
+
+            var now = DateTime.Now;
+            var ready = (now.Month + months) % 12;
+
+            return $"(Welcome {name}, your total amount of #{Total(amount, interest, months)} should be ready in {(Months)ready}. Thanks)";
         }
+
+
+        //Calculates the total amount of money at certain interest and given amount of time
 
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = (amount + ((interest / 100) * months * amount));
                 //----- ur logic
 
 
                 return total;
 
             }
-            catch (Exception ex)
+            catch
             {
 
                 return -1;
             }
 
         }
-
-        public decimal NetInterest(decimal interest, int months)
+        //Returns the net Interest on certain amount in a given period of time
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal netInterest = 0;
+                decimal netInterest = ((interest / 100) * months * amount);
                 //----- ur logic
 
 
                 return netInterest;
 
             }
-            catch (Exception ex)
+            catch
             {
 
                 return -1;
@@ -84,7 +106,7 @@ namespace FoolParadiseApp
                 return netInterest;
 
             }
-            catch (Exception ex)
+            catch
             {
 
                 return -1;
