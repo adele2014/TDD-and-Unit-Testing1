@@ -10,16 +10,15 @@ namespace XUnitTestProject1
         public void DepositTest()
         {
             var foolApp = new Program();
-            string depo = foolApp.Deposit("Segun", 2000, 100, 5);
-            Assert.Equal($"(Welcome Segun, your total should be ready in Decmber. Thanks)", depo);
+            string depo = foolApp.Deposit("Segun", 2000, 100, 4);
+            Assert.Equal($"Welcome Segun, your 16000 should be ready in December. Thanks", depo);
         }
 
         [Fact]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-
-            decimal intT = foolApp.NetInterest(50, 6);
+            decimal intT = foolApp.NetInterest(1000, 40, 6);
             Assert.Equal(2400, intT);
         }
 
@@ -41,14 +40,15 @@ namespace XUnitTestProject1
         }
 
         [Theory]
-        [InlineData(5000)]
-        [InlineData(10000)]
-        [InlineData(20000)]
-        public void VaryingInterest(decimal threshold)
+        [InlineData(5000, 80)]
+        [InlineData(10000, 40)]
+        [InlineData(20000, 20)]
+        public void VaryingInterest(decimal threshold, decimal interest)
         {
             var foolApp = new Program();
-            decimal interestAccrued = foolApp.Accrued(threshold, 3000);
-            Assert.Equal(3125, interestAccrued);
+            decimal interestAccrued = foolApp.Accrued(threshold, interest, 6);
+            Assert.Equal(24000, interestAccrued);
+
         }
     }
 }

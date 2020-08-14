@@ -8,8 +8,8 @@ namespace FoolParadiseApp
     {
         public static void Main(string[] args)
         {
+            // OTU LOUIS AKHIGBE
             Console.WriteLine("Hello World!");
-
             var prog = new Program();
             Console.WriteLine("Enter your name below");
             var name = Console.ReadLine();
@@ -24,24 +24,27 @@ namespace FoolParadiseApp
 
             Console.WriteLine(prog.Deposit(name, amount, interest, months));
             Console.Read();
-
             Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
 
         }
 
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
+            // $"(Welcome Segun, your total should be ready in December. Thanks)"
+            decimal total = Total(amount, interest, months);
+            DateTime dt = DateTime.Now.AddMonths(months);
 
-            return $"Welcome {name}, thank for choosing us";
+
+            return $"Welcome {name}, your {total} should be ready in {dt.ToString("MMMM")}. Thanks";
         }
 
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = 0;
                 //----- ur logic
-
+                total = amount * months + amount * (interest / 100) * months;
 
                 return total;
 
@@ -54,13 +57,13 @@ namespace FoolParadiseApp
 
         }
 
-        public decimal NetInterest(decimal interest, int months)
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
                 //----- ur logic
-
+                netInterest = amount * (interest / 100) * months;
 
                 return netInterest;
 
@@ -73,12 +76,13 @@ namespace FoolParadiseApp
 
         }
 
-        public decimal Accrued(decimal interest, int months)
+        public decimal Accrued(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
                 //----- ur logic
+                netInterest = amount * (interest / 100) * months;
 
 
                 return netInterest;
