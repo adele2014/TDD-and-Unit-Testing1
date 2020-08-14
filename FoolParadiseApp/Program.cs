@@ -31,62 +31,58 @@ namespace FoolParadiseApp
 
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
+            DateTime returnPeriod = DateTime.Now.AddMonths(months);
 
-            return $"Welcome {name}, thank for choosing us";
+            //return $"Welcome {name}, thank for choosing us";
+            return ($"Welcome {name}, your total {Total(amount, interest, months)} should be ready in {returnPeriod:MMMM}. Thanks");
         }
-
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = 0;
                 //----- ur logic
-
+                total = (amount * interest / 100 * months) + amount;
 
                 return total;
 
             }
-            catch (Exception ex)
+            catch
             {
-
                 return -1;
             }
 
         }
 
-        public decimal NetInterest(decimal interest, int months)
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
                 //----- ur logic
-
+                netInterest = (amount * interest / 100 * months);
 
                 return netInterest;
 
             }
-            catch (Exception ex)
+            catch
             {
-
                 return -1;
             }
 
         }
 
-        public decimal Accrued(decimal interest, int months)
+        public decimal Accrued(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
-                //----- ur logic
-
-
+                netInterest = NetInterest(amount, interest, months);
                 return netInterest;
 
             }
-            catch (Exception ex)
+            catch
             {
-
                 return -1;
             }
 

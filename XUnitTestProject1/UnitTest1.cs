@@ -11,16 +11,15 @@ namespace XUnitTestProject1
         {
             var foolApp = new Program();
             string depo = foolApp.Deposit("Segun", 2000, 100, 5);
-            Assert.Equal($"(Welcome Segun, your total should be ready in Decmber. Thanks)", depo);
+            Assert.Equal($"Welcome Segun, your total 12000 should be ready in January. Thanks", depo);
         }
 
         [Fact]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-
-            decimal intT = foolApp.NetInterest(50, 6);
-            Assert.Equal(2400, intT);
+            decimal intT = foolApp.NetInterest(1000, 50, 6);
+            Assert.Equal(3000, intT);
         }
 
         [Fact]
@@ -28,7 +27,7 @@ namespace XUnitTestProject1
         {
             var foolApp = new Program();
             decimal total = foolApp.Total(1000, 40, 6);
-            Assert.Equal(8400, total);
+            Assert.Equal(3400, total);
         }
 
         [Fact]
@@ -37,18 +36,18 @@ namespace XUnitTestProject1
             var foolApp = new Program();
             decimal total = foolApp.Total(1000, 40, 6);
             var doubleTotal = total * 2;
-            Assert.Equal(16800, doubleTotal);
+            Assert.Equal(6800, doubleTotal);
         }
 
         [Theory]
-        [InlineData(5000)]
-        [InlineData(10000)]
-        [InlineData(20000)]
-        public void VaryingInterest(decimal threshold)
+        [InlineData(5000, 30, 4, 6000)]
+        [InlineData(10000, 40, 5, 20000)]
+        [InlineData(20000, 50, 6, 60000)]
+        public void VaryingInterest(decimal threshold, int interest, int months, decimal expected)
         {
             var foolApp = new Program();
-            decimal interestAccrued = foolApp.Accrued(threshold, 3000);
-            Assert.Equal(3125, interestAccrued);
+            decimal interestAccrued = foolApp.Accrued(threshold, interest, months);
+            Assert.Equal(expected, interestAccrued);
         }
     }
 }
