@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 
@@ -24,23 +25,32 @@ namespace FoolParadiseApp
 
             Console.WriteLine(prog.Deposit(name, amount, interest, months));
             Console.Read();
-
             Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
 
         }
 
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
+            //getting the current month as at the time of the deposit
+            DateTime dt = DateTime.Now;
 
-            return $"Welcome {name}, thank for choosing us";
+            //Adding the current month to the number of months given for the investment           
+            DateTime dueMonth = dt.AddMonths(months);
+
+
+            decimal total = Total(amount, interest, months);
+            return $"Welcome {name}, your {total} should be ready in {dueMonth.ToString("MMMM")}. Thanks";
+
         }
 
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = 0;
                 //----- ur logic
+                decimal amountExpected = (amount * months);
+                total = amountExpected + (amountExpected * (interest / 100));
 
 
                 return total;
@@ -54,13 +64,13 @@ namespace FoolParadiseApp
 
         }
 
-        public decimal NetInterest(decimal interest, int months)
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
                 //----- ur logic
-
+                netInterest = (interest / 100) * amount * months;
 
                 return netInterest;
 
@@ -73,24 +83,36 @@ namespace FoolParadiseApp
 
         }
 
-        public decimal Accrued(decimal interest, int months)
-        {
-            try
-            {
-                decimal netInterest = 0;
-                //----- ur logic
+        //public decimal Accrued(decimal amount,decimal interest, int months)
+        //{
+        //    try
+        //    {
+        //        decimal netInterest = 0;
+        //        //----- ur logic
+        //        if (amount <= 5000)
+        //        {
+        //            return netInterest = amount + 125;
+        //        }
 
+        //        if (amount < 5000 && amount <= 10000 )
+        //        {
+        //            return netInterest = amount + 200;
+        //        }
+        //        if (amount < 10000 && amount <= 20000)
+        //        {
+        //            return netInterest = amount + 250;
+        //        }
 
-                return netInterest;
+        //        return netInterest;
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return -1;
-            }
+        //        return -1;
+        //    }
 
-        }
+        //}
     }
 
     //public class BankingObject
