@@ -11,6 +11,7 @@ namespace FoolParadiseApp
             Console.WriteLine("Hello World!");
 
             var prog = new Program();
+            //sssss
             Console.WriteLine("Enter your name below");
             var name = Console.ReadLine();
             Console.WriteLine("Enter amount");
