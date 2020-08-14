@@ -31,17 +31,17 @@ namespace FoolParadiseApp
 
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
-
-            return $"Welcome {name}, thank for choosing us";
+            string month = DateTime.Now.AddMonths(months).ToString("MMMM");
+            return $"Welcome {name}, your total should be ready in {month}. Thanks";
         }
 
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = 0;
                 //----- ur logic
-
+                total = (amount * months) + ((interest / 100 * amount) * months);
 
                 return total;
 
@@ -54,13 +54,13 @@ namespace FoolParadiseApp
 
         }
 
-        public decimal NetInterest(decimal interest, int months)
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
                 //----- ur logic
-
+                netInterest = (interest / 100 * amount) * months;
 
                 return netInterest;
 
