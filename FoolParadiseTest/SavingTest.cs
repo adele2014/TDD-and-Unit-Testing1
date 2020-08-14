@@ -1,5 +1,6 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FoolParadiseApp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace FoolParadiseTest
 {
     [TestClass]
@@ -9,16 +10,15 @@ namespace FoolParadiseTest
         public void DepositTest()
         {
             var foolApp = new Program();
-            string depo = foolApp.Deposit("Segun",2000,100,5);
-
-            Assert.AreEqual($"(Welcome Segun, your total should be ready in December. Thanks)", depo);
+            string depo = foolApp.Deposit("Segun", 2000, 100, 5);
+            Assert.AreEqual($"(Welcome Segun, your total should be ready in January. Thanks)", depo);
         }
-      
+
         [TestMethod]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-            decimal intT = foolApp.NetInterest(50, 6);
+            decimal intT = foolApp.NetInterest(1000, 40, 6);
             Assert.AreEqual(2400, intT);
         }
 

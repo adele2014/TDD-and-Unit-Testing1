@@ -6,23 +6,32 @@ namespace XUnitTestProject1
 {
     public class UnitTest1
     {
+        /// <summary>
+        /// A welcome message using the depositTest method
+        /// </summary>
         [Fact]
         public void DepositTest()
         {
             var foolApp = new Program();
             string depo = foolApp.Deposit("Segun", 2000, 100, 5);
-            Assert.Equal($"(Welcome Segun, your total should be ready in Decmber. Thanks)", depo);
+            Console.WriteLine(depo);
+            Assert.Equal($"(Welcome Segun, your total should be ready in January. Thanks)", depo);
         }
 
+        /// <summary>
+        /// Net Interest = (amount * months / 100) * interest;
+        /// </summary>
         [Fact]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-
-            decimal intT = foolApp.NetInterest(50, 6);
+            decimal intT = foolApp.NetInterest(1000, 40, 6);
             Assert.Equal(2400, intT);
         }
 
+        /// <summary>
+        /// Total in months
+        /// </summary>
         [Fact]
         public void TotalTest()
         {
@@ -40,7 +49,7 @@ namespace XUnitTestProject1
             Assert.Equal(16800, doubleTotal);
         }
 
-        [Theory]
+        [Theory] // A Theory is a test method and it tests for the arguments passed to the test method
         [InlineData(5000)]
         [InlineData(10000)]
         [InlineData(20000)]
