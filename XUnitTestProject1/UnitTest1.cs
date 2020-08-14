@@ -1,5 +1,4 @@
 using FoolParadiseApp;
-using System;
 using Xunit;
 
 namespace XUnitTestProject1
@@ -11,16 +10,15 @@ namespace XUnitTestProject1
         {
             var foolApp = new Program();
             string depo = foolApp.Deposit("Segun", 2000, 100, 5);
-            Assert.Equal($"(Welcome Segun, your total should be ready in Decmber. Thanks)", depo);
+            Assert.Equal($"Welcome Segun, your total sum, N12000 , should be ready in January. Thanks", depo);
         }
 
         [Fact]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-
-            decimal intT = foolApp.NetInterest(50, 6);
-            Assert.Equal(2400, intT);
+            decimal intT = foolApp.NetInterest(1000, 50, 6);
+            Assert.Equal(3000, intT);
         }
 
         [Fact]
@@ -28,7 +26,7 @@ namespace XUnitTestProject1
         {
             var foolApp = new Program();
             decimal total = foolApp.Total(1000, 40, 6);
-            Assert.Equal(8400, total);
+            Assert.Equal(3400, total);
         }
 
         [Fact]
@@ -37,7 +35,7 @@ namespace XUnitTestProject1
             var foolApp = new Program();
             decimal total = foolApp.Total(1000, 40, 6);
             var doubleTotal = total * 2;
-            Assert.Equal(16800, doubleTotal);
+            Assert.Equal(6800, doubleTotal);
         }
 
         [Theory]
@@ -47,8 +45,8 @@ namespace XUnitTestProject1
         public void VaryingInterest(decimal threshold)
         {
             var foolApp = new Program();
-            decimal interestAccrued = foolApp.Accrued(threshold, 3000);
-            Assert.Equal(3125, interestAccrued);
+            decimal interestAccrued = foolApp.Accrued(threshold, 3000, 6);
+            Assert.Equal(12000, interestAccrued);
         }
     }
 }
