@@ -9,46 +9,73 @@ namespace XUnitTestProject1
         [Fact]
         public void DepositTest()
         {
-            var foolApp = new Program();
-            string depo = foolApp.Deposit("Segun", 2000, 100, 5);
-            Assert.Equal($"(Welcome Segun, your total should be ready in Decmber. Thanks)", depo);
+            // user detail
+            var name = "Segun";
+            var amount = 1000;
+            var percent = 6;
+            var month = 5;
+            var foolApp = new foolApp(name, amount, percent, month);
+            // act
+            string depo = foolApp.Deposit(name, amount, percent, month);
+            // assert
+            Assert.Equal($"Welcome Segun, your total should be ready in January. Thanks", depo);
         }
 
         [Fact]
         public void NetInterestTest()
-        {
-            var foolApp = new Program();
-
-            decimal intT = foolApp.NetInterest(50, 6);
+        {   
+            // user detail
+            var name = "Segun";
+            var amount = 1000;
+            var percent = 40;
+            var month = 6;
+            var foolApp = new foolApp(name, amount, percent, month);
+            // act
+            decimal intT = foolApp.NetInterest(foolApp.Interest, foolApp.Months);
+            // assert
             Assert.Equal(2400, intT);
         }
 
         [Fact]
-        public void TotalTest()
-        {
-            var foolApp = new Program();
-            decimal total = foolApp.Total(1000, 40, 6);
+        public void TotalInterestTest()
+        {   
+            // user detail
+            var name = "Segun";
+            var amount = 1000;
+            var percent = 40;
+            var month = 6;
+            var foolApp = new foolApp(name, amount, percent, month);
+            // act
+            decimal total = foolApp.TotalInterest(1000, 40, 6);
+            // assert
             Assert.Equal(8400, total);
         }
 
         [Fact]
         public void TwoTotalTest()
         {
-            var foolApp = new Program();
-            decimal total = foolApp.Total(1000, 40, 6);
+            // user detail
+            var name = "Segun";
+            var amount = 1000;
+            var percent = 40;
+            var month = 6;
+            var foolApp = new foolApp(name, amount, percent, month);
+            // act
+            decimal total = foolApp.TotalInterest(1000, 40, 6);
             var doubleTotal = total * 2;
+            // assert
             Assert.Equal(16800, doubleTotal);
         }
 
-        [Theory]
-        [InlineData(5000)]
-        [InlineData(10000)]
-        [InlineData(20000)]
-        public void VaryingInterest(decimal threshold)
-        {
-            var foolApp = new Program();
-            decimal interestAccrued = foolApp.Accrued(threshold, 3000);
-            Assert.Equal(3125, interestAccrued);
-        }
+        //[Theory]
+        //[InlineData(5000)]
+        //[InlineData(10000)]
+        //[InlineData(20000)]
+        //public void VaryingInterest(decimal threshold)
+        //{
+        //    var foolApp = new Program();
+        //    decimal interestAccrued = foolApp.Accrued(threshold, 3000);
+        //    Assert.Equal(3125, interestAccrued);
+        //}
     }
 }
