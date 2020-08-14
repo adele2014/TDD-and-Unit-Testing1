@@ -20,33 +20,44 @@ namespace FoolParadiseApp
             Console.WriteLine("Enter duration in months");
             var months = Int32.Parse(Console.ReadLine());
 
-            Console.WriteLine("Hello Customer");
+            Console.WriteLine($"Hello {name}");
 
             Console.WriteLine(prog.Deposit(name, amount, interest, months));
-            Console.Read();
-
+           // Console.Read();
             Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
 
+            Console.WriteLine("Net interest is " + prog.NetInterest(amount, interest, months));
         }
 
         public string Deposit(string name, decimal amount, decimal interest, int months)
         {
 
-            return $"Welcome {name}, thank for choosing us";
+            try
+            {
+                DateTime dateTime = DateTime.Now.AddMonths(months);
+                ;
+                return $"(Welcome {name}, your total should be ready in {dateTime:MMMM}. Thanks)";
+            }
+            catch (Exception)
+            {
+
+                return "";
+            }
+            
         }
 
         public decimal Total(decimal amount, decimal interest, int months)
         {
             try
             {
-                decimal total  =0 ;
+                decimal total = 0;
                 //----- ur logic
-
+                total = (amount * (interest / 100) * months) + (amount * months);
 
                 return total;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return -1;
@@ -54,18 +65,18 @@ namespace FoolParadiseApp
 
         }
 
-        public decimal NetInterest(decimal interest, int months)
+        public decimal NetInterest(decimal amount, decimal interest, int months)
         {
             try
             {
                 decimal netInterest = 0;
                 //----- ur logic
-
+                netInterest = amount * (interest / 100) * months; 
 
                 return netInterest;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return -1;
@@ -84,7 +95,7 @@ namespace FoolParadiseApp
                 return netInterest;
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return -1;
