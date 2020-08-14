@@ -24,6 +24,7 @@ namespace FoolParadiseApp
 
             Console.WriteLine(prog.Deposit(name, amount, interest, months));
             Console.Read();
+
             Console.WriteLine("Total expected amount is " + prog.Total(amount, interest, months));
 
         }

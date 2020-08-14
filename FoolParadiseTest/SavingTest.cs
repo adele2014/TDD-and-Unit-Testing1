@@ -10,6 +10,7 @@ namespace FoolParadiseTest
         {
             var foolApp = new Program();
             string depo = foolApp.Deposit("Segun",2000,100,5);
+
             Assert.AreEqual($"(Welcome Segun, your total should be ready in December. Thanks)", depo);
         }
       

@@ -18,6 +18,7 @@ namespace XUnitTestProject1
         public void NetInterestTest()
         {
             var foolApp = new Program();
+
             decimal intT = foolApp.NetInterest(50, 6);
             Assert.Equal(2400, intT);
         }
