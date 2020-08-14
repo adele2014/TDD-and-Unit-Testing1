@@ -9,17 +9,16 @@ namespace FoolParadiseTest
         public void DepositTest()
         {
             var foolApp = new Program();
-            string depo = foolApp.Deposit("Segun",2000,100,5);
-
-            Assert.AreEqual($"(Welcome Segun, your total should be ready in December. Thanks)", depo);
+            string depo = foolApp.Deposit("Segun", 2000, 100, 5);
+            Assert.AreEqual($"Welcome Segun, your total 12000 should be ready in January. Thanks", depo);
         }
-      
+
         [TestMethod]
         public void NetInterestTest()
         {
             var foolApp = new Program();
-            decimal intT = foolApp.NetInterest(50, 6);
-            Assert.AreEqual(2400, intT);
+            decimal intT = foolApp.NetInterest(1000, 50, 6);
+            Assert.AreEqual(3000, intT);
         }
 
         [TestMethod]
@@ -27,7 +26,7 @@ namespace FoolParadiseTest
         {
             var foolApp = new Program();
             decimal total = foolApp.Total(1000, 40, 6);
-            Assert.AreEqual(8400, total);
+            Assert.AreEqual(3400, total);
         }
 
         [TestMethod]
@@ -36,7 +35,7 @@ namespace FoolParadiseTest
             var foolApp = new Program();
             decimal total = foolApp.Total(1000, 40, 6);
             var doubleTotal = total * 2;
-            Assert.AreEqual(16800, doubleTotal);
+            Assert.AreEqual(6800, doubleTotal);
         }
     }
 }
